@@ -1,2 +1,79 @@
 # example-docker-jupyter-notebook
-Example of a dockerized python application using Jupyter Notebooks
+
+Example of a Dockerized python application using Jupyter Notebook.
+
+### Notes:
+- Feel free to reuse and adapt it for your own software artifact or project.
+- No attribution needed (see [The Unlicense](LICENSE)).
+- If you fork this as a starter repository, you will likely want to pick another
+  license for your artifact.
+- The [`.devcontainer/`](.devcontainer/) directory contains the config for
+ integration with VS Code (see [guide
+here](https://github.com/PoPETS-AEC/examples-and-other-resources/blob/main/resources/vs-code-docker-integration.md)).
+- A [GitHub workflow](.github/workflows/build-push-docker-image.yaml)
+  automatically builds the Docker image and pushes it to the Container Registry
+(see [guide
+here](https://github.com/PoPETS-AEC/examples-and-other-resources/blob/main/resources/github-workflow-docker-image.md)).
+
+## Software requirements
+- [Docker Engine](https://docs.docker.com/engine/install/)
+- [git](https://git-scm.com/downloads)
+
+## Instructions
+
+Start by cloning this repository:
+- `git clone git@github.com:PoPETS-AEC/example-docker-jupyter-notebook.git` (SSH)
+- `git clone https://github.com/PoPETS-AEC/example-docker-jupyter-notebook.git` (HTTPS)
+
+Then, follow either set of instructions:
+
+> <details><summary>Using the Docker image from the Container Registry</summary>
+>
+> This [GitHub workflow](.github/workflows/build-push-docker-image.yaml)
+> automatically builds and pushes the Docker image to GitHub's Container Registry
+> when the `Dockerfile` or the `requirements.txt` files are modified.
+>
+> 1. Pull the Docker image:
+> ```bash
+> docker pull ghcr.io/popets-aec/example-docker-jupyter-notebook:main
+> ```
+> 2. Launch the Docker container:
+> ```bash
+> docker run --rm -it -p 8888:8888 \
+>     -v ${PWD}:/workspaces/example-docker-jupyter-notebook \
+>     -w /workspaces/example-docker-jupyter-notebook \
+>     --entrypoint bash ghcr.io/popets-aec/example-docker-jupyter-notebook:main
+> ```
+> 3. Launch the Jupyter server:
+> ```bash
+> jupyter notebook --ip 0.0.0.0 --no-browser
+> ```
+> 4. Open in your browser the Jupyter session link provided in the terminal
+>    output (e.g., `http://127.0.0.1:8888/tree?token=......`) and execute the
+>    cells of the [`Example.ipynb`](Example.ipynb) notebook.
+> </details>
+
+
+
+> <details><summary>Using a locally built Docker image</summary>
+>
+> 1. Build the Docker image:
+> ```bash
+> docker build -t example-docker-jupyter-notebook:main .
+> ```
+> 2. Launch the Docker container:
+> ```bash
+> docker run --rm -it -p 8888:8888 \
+>     -v ${PWD}:/workspaces/example-docker-jupyter-notebook \
+>     -w /workspaces/example-docker-jupyter-notebook \
+>     --entrypoint bash example-docker-jupyter-notebook:main
+> ```
+> 3. Launch the Jupyter server:
+> ```bash
+> jupyter notebook --ip 0.0.0.0 --no-browser
+> ```
+> 4. Open in your browser the Jupyter session link provided in the terminal
+>    output (e.g., `http://127.0.0.1:8888/tree?token=......`) and execute the
+>    cells of the [`Example.ipynb`](Example.ipynb) notebook.
+> </details>
+

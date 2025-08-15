@@ -1,0 +1,27 @@
+{
+  "name": "example-docker-python-pip",
+  "dockerFile": "../Dockerfile",
+  "forwardPorts": [
+    8888
+  ],
+  "postCreateCommand": "",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        // Other helpers for python
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-python.black-formatter",
+        "ms-toolsai.jupyter",
+        // pdf viewer to see plotted figures
+        "tomoki1207.pdf"
+      ],
+      "settings": {
+        // General settings
+        "files.eol": "\n",
+        "editor.formatOnSave": true,
+        "python.defaultInterpreterPath": "/opt/venv"
+      }
+    }
+  }
+}
