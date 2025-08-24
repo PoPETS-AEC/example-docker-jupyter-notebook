@@ -1,5 +1,5 @@
 {
-  "name": "example-docker-python-pip",
+  "name": "example-docker-jupyter-notebook",
   "dockerFile": "../Dockerfile",
   "forwardPorts": [
     8888
